@@ -27,8 +27,8 @@ export const expenses = pgTable(
 
 export const insertExpensesSchema = createInsertSchema(expenses, {
   title: z.string().min(3, { message: "Title must be at least 3 characters" }),
-  amount: z
-    .string()
-    .regex(/^\d=(\.\d{1,2})?$/, { message: "Ammount must be positive number" }),
+  amount: z.string().regex(/^\d+(\.\d{1,2})?$/, {
+    message: "Ammount must be a monetary value",
+  }),
 });
 export const selectExpensesSchema = createSelectSchema(expenses);
